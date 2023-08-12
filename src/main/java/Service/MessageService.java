@@ -40,12 +40,10 @@ public class MessageService {
     }
 
     public Message updateMessage(Message message, int message_id) {
-        Message findMessage = messageDAO.getMessageById(message_id);
-        if (findMessage == null || message.getMessage_text() == "" || message.getMessage_text().length() > 254) {
+        if (message.getMessage_text() == "" || message.getMessage_text().length() > 254) {
             return null;
         }
-        messageDAO.updateMessage(message, findMessage);
-        return messageDAO.getMessageById(message_id);
+        return messageDAO.updateMessage(message, message_id);
     }
 
     public List<Message> getAllUserMessages(int account_id) {
